@@ -7,7 +7,7 @@ compatibility_flags = ["nodejs_compat"]
 ENVIRONMENT = "production"
 PAYMENT_MODE = "simulated"
 MIDTRANS_IS_PRODUCTION = "false"
-RESEND_FROM = "VOID/ROSE Merch <onboarding@resend.dev>"
+RESEND_FROM = "VOID/ROSE Merch <orders@voidrose.reternia.com>"
 APP_URL = "https://voidrose.reternia.com"
 API_URL = "https://void-rose-merch-api.rizkyap90s.workers.dev"
 

@@ -17,7 +17,7 @@ export class EmailService {
 
   constructor(env: { RESEND_API_KEY?: string; RESEND_FROM?: string; DB: D1Database }) {
     this.apiKey = env.RESEND_API_KEY;
-    this.from = env.RESEND_FROM || 'VOID/ROSE Merch <merch@voidrose.com>';
+    this.from = env.RESEND_FROM || 'VOID/ROSE Merch <orders@voidrose.reternia.com>';
     this.db = env.DB;
   }
 
