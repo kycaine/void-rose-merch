@@ -24,7 +24,7 @@ export const App: React.FC = () => {
 
   return (
     <BrowserRouter>
-      <div className="min-h-screen flex flex-col bg-bg text-ink relative">
+      <div className="min-h-screen flex flex-col bg-bg text-ink relative overflow-x-hidden w-full max-w-full">
         <DevModeBanner />
         <Navbar />
         <main className="flex-1">

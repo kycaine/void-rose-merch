@@ -19,7 +19,7 @@ export const Navbar: React.FC = () => {
   ];
 
   return (
-    <nav className="sticky top-0 z-50 bg-surface border-b-4 border-ink w-full select-none">
+    <nav className="sticky top-0 z-50 bg-surface border-b-4 border-ink w-full max-w-full select-none overflow-x-hidden">
       <div className="w-full px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
         {/* KIRI: Title VOID/ROSE mentok kiri dengan margin dikit */}
         <div className="flex-1 flex items-center justify-start min-w-0">

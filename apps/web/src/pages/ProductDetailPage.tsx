@@ -69,9 +69,9 @@ export const ProductDetailPage: React.FC = () => {
     const triggerEl = (e?.currentTarget as HTMLElement) || document.getElementById('add-to-cart-btn');
     if (triggerEl) {
       const rect = triggerEl.getBoundingClientRect();
-      triggerFly(rect.left + rect.width / 2, rect.top + rect.height / 2, product.imageUrl);
+      triggerFly(rect.left + rect.width / 2, rect.top + rect.height / 2, product.imageUrl, product.name);
     } else {
-      triggerFly(window.innerWidth / 2, window.innerHeight / 2, product.imageUrl);
+      triggerFly(window.innerWidth / 2, window.innerHeight / 2, product.imageUrl, product.name);
     }
 
     addItem({

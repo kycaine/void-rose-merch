@@ -214,7 +214,7 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({ onOpenTicketModal, tourS
       onMouseLeave={() => setIsPaused(false)}
     >
       {/* 1. TOP COMMERCIAL BROADCAST STRIP & MINI PLAYER */}
-      <div className="w-full bg-ink text-white border-b-3 border-ink px-4 sm:px-8 py-2 flex flex-wrap items-center justify-between font-mono text-[11px] font-bold gap-2 overflow-hidden">
+      <div className="w-full max-w-full bg-ink text-white border-b-3 border-ink px-3 sm:px-8 py-2 flex items-center justify-between font-mono text-[11px] font-bold gap-2 overflow-x-hidden">
         <div className="flex items-center space-x-3 shrink-0">
           <span className="flex items-center text-[#FFE600] animate-pulse">
             <Radio className="w-3.5 h-3.5 mr-1.5" />
@@ -227,7 +227,7 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({ onOpenTicketModal, tourS
         </div>
 
         {/* Compact Mini Player in Broadcast Strip */}
-        <div className="flex items-center space-x-2 sm:space-x-3 ml-auto sm:ml-0">
+        <div className="flex items-center space-x-2 sm:space-x-3 ml-auto sm:ml-0 shrink-0">
           {/* Play / Pause Toggle Button */}
           <button
             type="button"
@@ -257,8 +257,8 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({ onOpenTicketModal, tourS
             <span className={`w-1 bg-[#FFE600] transition-all duration-300 ${isPlayingAudio ? 'h-1.5 animate-bounce' : 'h-2.5'}`} />
           </div>
 
-          {/* Volume Control */}
-          <div className="flex items-center space-x-1.5 bg-black/50 border border-white/40 px-2 py-0.5">
+          {/* Volume Control (hidden on mobile, visible on tablet & desktop) */}
+          <div className="hidden sm:flex items-center space-x-1.5 bg-black/50 border border-white/40 px-2 py-0.5">
             <button
               type="button"
               onClick={toggleMute}
@@ -442,8 +442,8 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({ onOpenTicketModal, tourS
           </div>
 
           {/* Right Column: Visual Stage with Neo-Brutalist Frame */}
-          <div className="lg:col-span-5 relative">
-            <div className="relative border-4 border-ink bg-white p-6 aspect-[4/3] sm:aspect-square flex items-center justify-center shadow-[10px_10px_0px_#1A1A1A] overflow-hidden group">
+          <div className="lg:col-span-5 relative max-w-full">
+            <div className="relative border-4 border-ink bg-white p-4 sm:p-6 aspect-[4/3] sm:aspect-square flex items-center justify-center shadow-[6px_6px_0px_#1A1A1A] sm:shadow-[10px_10px_0px_#1A1A1A] overflow-hidden group max-w-full">
               {/* Product / Asset Image */}
               <img
                 src={current.visual.imageUrl}
@@ -452,7 +452,7 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({ onOpenTicketModal, tourS
               />
 
               {/* Rotated Sticker Accent */}
-              <div className="absolute top-4 right-4 bg-brand text-white border-3 border-ink px-3.5 py-2 shadow-md rotate-sticker-right select-none text-center">
+              <div className="absolute top-2 right-2 sm:top-4 sm:right-4 bg-brand text-white border-3 border-ink px-2.5 py-1.5 sm:px-3.5 sm:py-2 shadow-md rotate-sticker-right select-none text-center">
                 <div className="font-mono text-[9px] font-bold tracking-widest">{current.visual.badgeTitle}</div>
                 <div className="font-display text-lg sm:text-xl leading-none">{current.visual.badgeValue}</div>
               </div>

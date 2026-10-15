@@ -10,6 +10,7 @@ export const DevModeBanner: React.FC = () => {
   // Sembunyikan di home (/), shop (/shop), product detail (/product/*), dll.
   const isCheckoutOrAfter =
     location.pathname.startsWith('/checkout') ||
+    location.pathname.startsWith('/pay') ||
     location.pathname.startsWith('/dev/pay') ||
     location.pathname.startsWith('/order') ||
     location.pathname.startsWith('/check-order');
@@ -19,7 +20,7 @@ export const DevModeBanner: React.FC = () => {
   }
 
   return (
-    <div className="w-full bg-[#FFE600] border-b-4 border-ink py-2 px-4 text-center font-mono text-xs sm:text-sm font-bold text-ink uppercase tracking-wider flex items-center justify-center space-x-2 select-none">
+    <div className="w-full max-w-full overflow-hidden bg-[#FFE600] border-b-4 border-ink py-2 px-3 sm:px-4 text-center font-mono text-xs sm:text-sm font-bold text-ink uppercase tracking-wider flex items-center justify-center space-x-2 select-none">
       <span className="bg-ink text-white px-2 py-0.5 text-xs">{t.devBanner.devMode}</span>
       <span>{t.devBanner.simulatedNotice}</span>
     </div>

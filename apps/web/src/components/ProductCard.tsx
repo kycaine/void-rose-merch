@@ -30,8 +30,9 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     e.stopPropagation();
     if (isSoldOut || !defaultVariant) return;
 
-    const rect = e.currentTarget.getBoundingClientRect();
-    triggerFly(rect.left + rect.width / 2, rect.top + rect.height / 2, product.imageUrl);
+    const cardEl = (e.currentTarget as HTMLElement).closest('.neo-card') || (e.currentTarget as HTMLElement);
+    const rect = cardEl.getBoundingClientRect();
+    triggerFly(rect.left + rect.width / 2, rect.top + rect.height * 0.38, product.imageUrl, product.name);
 
     addItem({
       productId: product.id,

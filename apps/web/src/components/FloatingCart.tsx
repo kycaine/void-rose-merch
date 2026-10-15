@@ -99,19 +99,26 @@ export const FloatingCart: React.FC = () => {
                 removeFly(fly.id);
               }}
             >
-              {/* Inner wrapper handles centering offset to prevent CSS transform keyframe conflict */}
-              <div className="-translate-x-1/2 -translate-y-1/2 w-12 h-12 sm:w-14 sm:h-14 bg-surface border-3 border-ink rounded-lg shadow-[4px_4px_0px_#1A1A1A] flex items-center justify-center p-1.5 overflow-hidden filter drop-shadow-md">
-                {fly.imageUrl ? (
-                  <img
-                    src={fly.imageUrl}
-                    alt="Flying item"
-                    className="w-full h-full object-contain"
-                  />
-                ) : (
-                  <ShoppingBag className="w-6 h-6 text-brand" />
+              {/* Card Thumbnail Mini Preview: represents the actual product card floating into the cart */}
+              <div className="-translate-x-1/2 -translate-y-1/2 w-14 h-18 sm:w-16 sm:h-20 bg-surface border-3 border-ink rounded-lg shadow-[4px_4px_0px_#1A1A1A] flex flex-col items-center justify-between p-1.5 overflow-hidden filter pointer-events-none">
+                <div className="w-full flex-1 flex items-center justify-center overflow-hidden bg-accent-2/60 border border-ink/20 rounded-xs">
+                  {fly.imageUrl ? (
+                    <img
+                      src={fly.imageUrl}
+                      alt={fly.title || 'Product'}
+                      className="w-full h-full object-contain"
+                    />
+                  ) : (
+                    <ShoppingBag className="w-6 h-6 text-brand" />
+                  )}
+                </div>
+                {fly.title && (
+                  <div className="w-full text-[8px] font-mono font-bold text-ink truncate text-center pt-0.5 leading-tight">
+                    {fly.title}
+                  </div>
                 )}
                 {/* Neo-brutalist spark badge */}
-                <div className="absolute -top-1 -right-1 bg-[#FFE600] text-ink font-mono text-[9px] font-black px-1 border border-ink shadow-xs">
+                <div className="absolute -top-1.5 -right-1.5 bg-[#FFE600] text-ink font-mono text-[9px] font-black px-1.5 py-0.2 border-2 border-ink shadow-xs">
                   +1
                 </div>
               </div>
@@ -124,7 +131,7 @@ export const FloatingCart: React.FC = () => {
       <div
         ref={cartAnchorRef}
         id="floating-cart-widget"
-        className={`fixed bottom-6 right-4 sm:bottom-8 sm:right-8 z-50 select-none transition-all duration-200 ${
+        className={`fixed bottom-4 right-3 sm:bottom-8 sm:right-8 z-50 select-none transition-all duration-200 max-w-[calc(100vw-1.5rem)] ${
           isCartBumping ? 'animate-cart-impact' : ''
         }`}
       >
@@ -133,30 +140,30 @@ export const FloatingCart: React.FC = () => {
           <button
             onClick={() => setIsMinimized(false)}
             id="floating-cart-minimized-btn"
-            className="flex items-center space-x-2.5 bg-surface border-4 border-ink px-4 py-3 shadow-[6px_6px_0px_#1A1A1A] hover:shadow-[8px_8px_0px_#1A1A1A] hover:-translate-y-0.5 active:translate-x-1 active:translate-y-1 cursor-pointer group"
+            className="flex items-center space-x-2 sm:space-x-2.5 bg-surface border-3 sm:border-4 border-ink px-3 sm:px-4 py-2.5 sm:py-3 shadow-[4px_4px_0px_#1A1A1A] sm:shadow-[6px_6px_0px_#1A1A1A] hover:shadow-[8px_8px_0px_#1A1A1A] hover:-translate-y-0.5 active:translate-x-1 active:translate-y-1 cursor-pointer group max-w-full"
             title="Buka Keranjang"
           >
-            <div className="relative">
-              <ShoppingBag className="w-6 h-6 text-ink group-hover:text-brand transition-colors" />
+            <div className="relative shrink-0">
+              <ShoppingBag className="w-5 h-5 sm:w-6 sm:h-6 text-ink group-hover:text-brand transition-colors" />
               {itemCount > 0 && (
-                <span className="absolute -top-2 -right-2.5 bg-brand text-white font-mono text-xs font-black px-1.5 py-0.2 border-2 border-ink rounded-full">
+                <span className="absolute -top-2 -right-2.5 bg-brand text-white font-mono text-[10px] sm:text-xs font-black px-1.5 py-0.2 border-2 border-ink rounded-full">
                   {itemCount}
                 </span>
               )}
             </div>
-            <div className="text-left font-mono">
-              <div className="text-[10px] font-bold text-ink/70 uppercase">
+            <div className="text-left font-mono min-w-0">
+              <div className="text-[9px] sm:text-[10px] font-bold text-ink/70 uppercase truncate">
                 {t.floatingCart.title} ({itemCount})
               </div>
-              <div className="text-xs font-extrabold text-brand">
+              <div className="text-xs sm:text-sm font-extrabold text-brand truncate">
                 {itemCount > 0 ? formatIDR(subtotal) : (lang === 'id' ? 'Kosong' : 'Empty')}
               </div>
             </div>
-            <ChevronUp className="w-4 h-4 text-ink ml-1" />
+            <ChevronUp className="w-4 h-4 text-ink ml-1 shrink-0" />
           </button>
         ) : (
           /* Expanded Card View */
-          <div className="w-[300px] sm:w-[320px] bg-surface border-4 border-ink shadow-[8px_8px_0px_#1A1A1A] flex flex-col overflow-hidden">
+          <div className="w-[calc(100vw-2rem)] sm:w-[320px] max-w-[320px] bg-surface border-4 border-ink shadow-[6px_6px_0px_#1A1A1A] sm:shadow-[8px_8px_0px_#1A1A1A] flex flex-col overflow-hidden">
             {/* Header Strip */}
             <div className="bg-brand text-white px-3.5 py-2.5 border-b-4 border-ink flex items-center justify-between">
               <div className="flex items-center space-x-2">

@@ -6,7 +6,7 @@ export const MarqueeStrip: React.FC = () => {
   const items = [...t.marquee, ...t.marquee, ...t.marquee];
 
   return (
-    <div className="w-full bg-ink text-white border-y-4 border-ink py-3 overflow-hidden select-none">
+    <div className="w-full max-w-full bg-ink text-white border-y-4 border-ink py-3 overflow-hidden select-none">
       <div className="flex w-max animate-marquee space-x-8 text-sm md:text-base font-display tracking-widest uppercase">
         {items.map((item, idx) => (
           <div key={idx} className="flex items-center space-x-6">
