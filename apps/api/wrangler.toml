@@ -1,4 +1,4 @@
-name = "merch-band-api"
+name = "void-rose-merch-api"
 main = "src/index.ts"
 compatibility_date = "2024-09-23"
 compatibility_flags = ["nodejs_compat"]
@@ -9,7 +9,7 @@ PAYMENT_MODE = "midtrans"
 MIDTRANS_IS_PRODUCTION = "false"
 RESEND_FROM = "VOID/ROSE Merch <onboarding@resend.dev>"
 APP_URL = "https://voidrose.reternia.com"
-API_URL = "https://merch-band-api.rizkyap90s.workers.dev"
+API_URL = "https://void-rose-merch-api.rizkyap90s.workers.dev"
 
 [[d1_databases]]
 binding = "DB"
