@@ -358,7 +358,7 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({ onOpenTicketModal, tourS
             </div>
 
             {/* 3. DEDICATED NEO-BRUTALIST MINI AUDIO PLAYER (Hidden on Mobile/HP mode) */}
-            <div className="pt-2 hidden md:block">
+            <div className="pt-2 hidden lg:block">
               <div className="p-2.5 sm:p-3 bg-white border-3 border-ink shadow-sm w-full max-w-lg lg:max-w-xl transition-all">
                 <div className="flex items-center justify-between gap-2 sm:gap-3 w-full min-w-0">
                   {/* Left: Play/Pause button + Track Info */}
@@ -441,8 +441,8 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({ onOpenTicketModal, tourS
             </div>
           </div>
 
-          {/* Right Column: Visual Stage with Neo-Brutalist Frame */}
-          <div className="lg:col-span-5 relative max-w-full">
+          {/* Right Column: Visual Stage with Neo-Brutalist Frame (Hidden on Mobile/HP mode) */}
+          <div className="hidden lg:block lg:col-span-5 relative max-w-full">
             <div className="relative border-4 border-ink bg-white p-4 sm:p-6 aspect-[4/3] sm:aspect-square flex items-center justify-center shadow-[6px_6px_0px_#1A1A1A] sm:shadow-[10px_10px_0px_#1A1A1A] overflow-hidden group max-w-full">
               {/* Product / Asset Image */}
               <img
