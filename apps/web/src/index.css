@@ -94,58 +94,58 @@
   transform: rotate(3.5deg);
 }
 
-/* Thrown to Cart Silky Smooth Parabolic Arc Animation */
-@keyframes flyThrowArc {
+/* True 60 FPS GPU-Accelerated Parabolic Card Flight (Zero Stutter, Compositor-Only) */
+@keyframes flyThrowX {
   0% {
-    transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
-    opacity: 1;
-    filter: drop-shadow(0 10px 15px rgba(26, 26, 26, 0.28));
-  }
-  18% {
-    transform: translate3d(calc(var(--target-x) * 0.16), calc(var(--target-y) * 0.06 - 55px), 0) scale(1.08) rotate(-4deg);
-    opacity: 1;
-    filter: drop-shadow(0 16px 24px rgba(26, 26, 26, 0.32));
-  }
-  50% {
-    transform: translate3d(calc(var(--target-x) * 0.52), calc(var(--target-y) * 0.36 - 25px), 0) scale(0.92) rotate(8deg);
-    opacity: 0.98;
-    filter: drop-shadow(0 10px 18px rgba(26, 26, 26, 0.24));
-  }
-  80% {
-    transform: translate3d(calc(var(--target-x) * 0.86), calc(var(--target-y) * 0.8), 0) scale(0.6) rotate(4deg);
-    opacity: 0.92;
-    filter: drop-shadow(0 4px 8px rgba(26, 26, 26, 0.18));
-  }
-  95% {
-    transform: translate3d(calc(var(--target-x) * 0.97), calc(var(--target-y) * 0.97), 0) scale(0.28) rotate(1deg);
-    opacity: 0.6;
+    transform: translate3d(0, 0, 0);
   }
   100% {
-    transform: translate3d(var(--target-x), var(--target-y), 0) scale(0.16) rotate(0deg);
-    opacity: 0;
-    filter: drop-shadow(0 0 0 transparent);
+    transform: translate3d(var(--target-x), 0, 0);
   }
 }
 
-.animate-fly-throw {
-  animation: flyThrowArc 0.72s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  pointer-events: none;
-  will-change: transform, opacity, filter;
+@keyframes flyThrowY {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+    opacity: 1;
+    animation-timing-function: cubic-bezier(0.1, 0.85, 0.3, 1);
+  }
+  30% {
+    transform: translate3d(0, -65px, 0) scale(1.06) rotate(6deg);
+    opacity: 1;
+    animation-timing-function: cubic-bezier(0.65, 0, 0.9, 0.45);
+  }
+  88% {
+    opacity: 0.95;
+  }
+  100% {
+    transform: translate3d(0, var(--target-y), 0) scale(0.16) rotate(-12deg);
+    opacity: 0;
+  }
+}
+
+.animate-fly-x {
+  animation: flyThrowX 0.58s cubic-bezier(0.2, 0.6, 0.35, 1) forwards;
+  will-change: transform;
+  contain: layout style paint;
+}
+
+.animate-fly-y {
+  animation: flyThrowY 0.58s forwards;
+  will-change: transform, opacity;
+  contain: layout style paint;
 }
 
 /* Cart receiving impact bounce - bouncy neo-brutalist spring */
 @keyframes cartImpactBounce {
   0% {
-    transform: scale(1);
+    transform: scale(1) translateY(0);
   }
-  30% {
-    transform: scale(1.22) translateY(-6px) rotate(-3deg);
+  35% {
+    transform: scale(1.18) translateY(-5px);
   }
-  60% {
-    transform: scale(0.92) translateY(2px) rotate(2deg);
-  }
-  80% {
-    transform: scale(1.06) translateY(-2px);
+  65% {
+    transform: scale(0.95) translateY(1px);
   }
   100% {
     transform: scale(1) translateY(0);
@@ -153,7 +153,8 @@
 }
 
 .animate-cart-impact {
-  animation: cartImpactBounce 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
-  transform-origin: center center;
+  animation: cartImpactBounce 0.38s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: transform;
+  transform-origin: bottom right;
 }
 
