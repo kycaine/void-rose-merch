@@ -1,0 +1,22 @@
+name = "merch-band-api"
+main = "src/index.ts"
+compatibility_date = "2024-09-23"
+compatibility_flags = ["nodejs_compat"]
+
+[vars]
+ENVIRONMENT = "production"
+PAYMENT_MODE = "midtrans"
+MIDTRANS_IS_PRODUCTION = "false"
+RESEND_FROM = "VOID/ROSE Merch <onboarding@resend.dev>"
+APP_URL = "https://voidrose.reternia.com"
+API_URL = "https://merch-band-api.rizkyap90s.workers.dev"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "merch-band-d1"
+database_id = "0457baf7-9471-4984-9e00-a15666fbd36d"
+migrations_dir = "migrations"
+
+[[kv_namespaces]]
+binding = "CACHE_KV"
+id = "ebac3e8ead7b4dad83845d77a0e0113c"

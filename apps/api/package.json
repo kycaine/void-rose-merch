@@ -1,0 +1,28 @@
+{
+  "name": "@merch-band/api",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "build": "tsc --noEmit",
+    "deploy": "wrangler deploy",
+    "db:migrate:local": "wrangler d1 migrations apply merch-band-d1 --local",
+    "db:migrate:remote": "wrangler d1 migrations apply merch-band-d1 --remote",
+    "db:seed:local": "node scripts/seed.mjs --local",
+    "db:seed:remote": "node scripts/seed.mjs --remote"
+  },
+  "dependencies": {
+    "@hono/zod-validator": "^0.4.3",
+    "@merch-band/shared": "workspace:*",
+    "drizzle-orm": "^0.40.0",
+    "hono": "^4.7.4",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250224.0",
+    "drizzle-kit": "^0.30.5",
+    "typescript": "^5.8.2",
+    "wrangler": "^4.104.0"
+  }
+}

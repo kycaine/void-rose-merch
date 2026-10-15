@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="100%" height="100%">
+  <rect width="600" height="600" fill="#DFD3C3"/>
+  <rect x="20" y="20" width="560" height="560" fill="none" stroke="#1A1A1A" stroke-width="6"/>
+  
+  <!-- Vinyl Gatefold Cover behind -->
+  <rect x="80" y="80" width="360" height="360" fill="#85586F" stroke="#1A1A1A" stroke-width="8"/>
+  <text x="120" y="160" font-family="'Archivo Black', sans-serif" font-size="36" fill="#F8EDE3">STATIC</text>
+  <text x="120" y="210" font-family="'Archivo Black', sans-serif" font-size="36" fill="#1A1A1A">BLOOM</text>
+  <text x="120" y="250" font-family="monospace" font-size="14" fill="#F8EDE3" letter-spacing="2">VOID/ROSE DEBUT LP</text>
+  
+  <!-- Vinyl Record popping out -->
+  <g transform="translate(360, 260)">
+    <circle cx="0" cy="0" r="170" fill="#1A1A1A" stroke="#1A1A1A" stroke-width="4"/>
+    <!-- Grooves -->
+    <circle cx="0" cy="0" r="150" fill="none" stroke="#333333" stroke-width="2"/>
+    <circle cx="0" cy="0" r="130" fill="none" stroke="#333333" stroke-width="1.5"/>
+    <circle cx="0" cy="0" r="110" fill="none" stroke="#333333" stroke-width="2"/>
+    <circle cx="0" cy="0" r="90" fill="none" stroke="#333333" stroke-width="1.5"/>
+    <!-- Center Label -->
+    <circle cx="0" cy="0" r="60" fill="#D0B8A8" stroke="#1A1A1A" stroke-width="4"/>
+    <circle cx="0" cy="0" r="10" fill="#DFD3C3" stroke="#1A1A1A" stroke-width="3"/>
+    <text x="0" y="-15" font-family="monospace" font-size="9" font-weight="bold" fill="#1A1A1A" text-anchor="middle">33 1/3 RPM</text>
+    <text x="0" y="30" font-family="'Archivo Black', sans-serif" font-size="10" fill="#85586F" text-anchor="middle">SIDE A</text>
+  </g>
+  
+  <!-- Sticker -->
+  <rect x="70" y="460" width="220" height="45" fill="#D0B8A8" stroke="#1A1A1A" stroke-width="3"/>
+  <text x="180" y="488" font-family="'Archivo Black', sans-serif" font-size="14" fill="#1A1A1A" text-anchor="middle">180G CLEAR SMOKE</text>
+</svg>

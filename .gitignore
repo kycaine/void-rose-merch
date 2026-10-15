@@ -1,0 +1,147 @@
+# ==============================================================================
+# SECRETS & ENVIRONMENT VARIABLES (CRITICAL SECURITY)
+# Never commit real API keys, tokens, or credentials to version control.
+# ==============================================================================
+.env
+.env.*
+*.env
+*.env.*
+.dev.vars
+.dev.vars.*
+*.dev.vars
+*.dev.vars.*
+
+# Allow safe public examples & templates only
+!.env.example
+!.env.*.example
+!*.env.example
+!.dev.vars.example
+!*.dev.vars.example
+
+# Private Keys, Certificates, & Credentials
+*.pem
+*.key
+*.cert
+*.crt
+*.pfx
+*.p12
+*.pkcs12
+id_rsa
+id_rsa.pub
+id_ed25519
+id_ed25519.pub
+*.keystore
+secrets/
+private/
+
+# ==============================================================================
+# PRIVATE LOCAL DOCUMENTATION & RUNBOOKS
+# Only README.md and MASTER_PROMPT.md are published to GitHub
+# ==============================================================================
+DEPLOYMENTS.md
+deployment*.md
+deployments*.md
+
+# ==============================================================================
+# DEPENDENCIES & PACKAGE MANAGERS
+# ==============================================================================
+node_modules/
+*/node_modules/
+*/*/node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+.pnpm-debug.log*
+.pnpm-store/
+
+# ==============================================================================
+# BUILD OUTPUTS & COMPILED ASSETS
+# ==============================================================================
+dist/
+*/dist/
+*/*/dist/
+build/
+*/build/
+out/
+*/out/
+.output/
+*.tsbuildinfo
+*.d.ts.map
+
+# ==============================================================================
+# CLOUDFLARE WORKERS & WRANGLER RUNTIME STATE
+# ==============================================================================
+.wrangler/
+*/.wrangler/
+*/*/.wrangler/
+.mf/
+worker.js
+worker.js.map
+
+# ==============================================================================
+# TESTING & COVERAGE
+# ==============================================================================
+coverage/
+*.lcov
+.nyc_output/
+playwright-report/
+test-results/
+
+# ==============================================================================
+# CACHES, TEMPORARY FILES & LOGS
+# ==============================================================================
+.cache/
+*/.cache/
+.vite/
+*/.vite/
+.turbo/
+.parcel-cache/
+.eslintcache
+.stylelintcache
+*.log
+logs/
+*.tmp
+*.temp
+*.bak
+
+# ==============================================================================
+# OPERATING SYSTEM & EDITOR / IDE FILES
+# ==============================================================================
+# macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+[Dd]esktop.ini
+
+# Linux
+*~
+.directory
+
+# JetBrains / IntelliJ / WebStorm
+.idea/
+*.iml
+*.iws
+
+# Visual Studio Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# Other Editors
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.swo

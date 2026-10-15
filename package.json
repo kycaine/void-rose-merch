@@ -1,0 +1,22 @@
+{
+  "name": "merch-band-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "packageManager": "pnpm@12.11.2",
+  "scripts": {
+    "dev": "pnpm --filter \"@merch-band/*\" --parallel dev",
+    "dev:api": "pnpm --filter @merch-band/api dev",
+    "dev:web": "pnpm --filter @merch-band/web dev",
+    "build": "pnpm --filter @merch-band/shared build && pnpm --filter @merch-band/api build && pnpm --filter @merch-band/web build",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "db:migrate:local": "pnpm --filter @merch-band/api db:migrate:local",
+    "db:seed:local": "pnpm --filter @merch-band/api db:seed:local",
+    "lint": "eslint . --max-warnings 0"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.2",
+    "vitest": "^3.0.7",
+    "wrangler": "^4.104.0"
+  }
+}

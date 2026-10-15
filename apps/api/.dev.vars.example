@@ -1,0 +1,22 @@
+# Cloudflare Workers API Local Environment Variables
+# Copy to .dev.vars in apps/api for local development with wrangler
+
+# Payment Mode: simulated | midtrans
+PAYMENT_MODE=simulated
+ENVIRONMENT=development
+
+# Midtrans Configuration (Mode: midtrans)
+MIDTRANS_SERVER_KEY=SB-Mid-server-xxxxxxxxxxxxxxxxxxxxxxxx
+MIDTRANS_CLIENT_KEY=SB-Mid-client-xxxxxxxxxxxxxxxxxxxxxxxx
+MIDTRANS_IS_PRODUCTION=false
+
+# Resend Email Configuration (Optional - falls back to simulated email logs)
+RESEND_API_KEY=
+RESEND_FROM="VOID/ROSE Merch <merch@voidrose.com>"
+
+# App URLs
+APP_URL=http://localhost:5173
+API_URL=http://localhost:8787
+
+# Admin Secret Key (header: X-Admin-Token)
+ADMIN_SECRET_KEY=void-rose-super-secret-admin-key-2026

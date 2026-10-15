@@ -1,0 +1,449 @@
+[
+  {
+    "id": "prod_1",
+    "slug": "void-rose-tee",
+    "name": "Void Rose Tee",
+    "description": "Boxy 280gsm cotton tee with a screen-printed rose and thorn graphic on the back. Pre-washed, oversized fit.",
+    "category": "T-SHIRT",
+    "badge": "NEW",
+    "details": "100% organic cotton, 280gsm. Screen print, water-based inks. Pre-washed, oversized fit.",
+    "shippingInfo": "Pengiriman menggunakan JNE / SiCepat / J&T dengan nomor resi otomatis. Dikirim dalam 1-3 hari kerja.",
+    "returnsInfo": "Garansi retur 7 hari jika barang cacat produksi atau ukuran salah dari kami (wajib sertakan video unboxing).",
+    "imageUrl": "/assets/products/void-rose-tee.svg",
+    "thumbnailUrls": [
+      "/assets/products/void-rose-tee.svg",
+      "/assets/products/void-rose-tee-back.svg",
+      "/assets/products/void-rose-tee-detail.svg"
+    ],
+    "isFeatured": true,
+    "isActive": true,
+    "variants": [
+      {
+        "id": "var_1_s",
+        "productId": "prod_1",
+        "sku": "VR-TEE-BLK-S",
+        "size": "S",
+        "color": "BLACK",
+        "price": 350000,
+        "stock": 15
+      },
+      {
+        "id": "var_1_m",
+        "productId": "prod_1",
+        "sku": "VR-TEE-BLK-M",
+        "size": "M",
+        "color": "BLACK",
+        "price": 350000,
+        "stock": 20
+      },
+      {
+        "id": "var_1_l",
+        "productId": "prod_1",
+        "sku": "VR-TEE-BLK-L",
+        "size": "L",
+        "color": "BLACK",
+        "price": 350000,
+        "stock": 18
+      },
+      {
+        "id": "var_1_xl",
+        "productId": "prod_1",
+        "sku": "VR-TEE-BLK-XL",
+        "size": "XL",
+        "color": "BLACK",
+        "price": 350000,
+        "stock": 12
+      }
+    ]
+  },
+  {
+    "id": "prod_2",
+    "slug": "thorn-heavy-hoodie",
+    "name": "Thorn Heavy Hoodie",
+    "description": "Heavyweight French Terry hoodie with barbed thorn screen-print along sleeves and chest.",
+    "category": "HOODIE",
+    "badge": "BEST SELLER",
+    "details": "450gsm heavyweight French Terry, custom double-layered hood, thorn graphic print, kangaroo pocket.",
+    "shippingInfo": "Pengiriman menggunakan JNE / SiCepat / J&T dengan nomor resi otomatis. Dikirim dalam 1-3 hari kerja.",
+    "returnsInfo": "Garansi retur 7 hari jika barang cacat produksi atau ukuran salah dari kami.",
+    "imageUrl": "/assets/products/thorn-heavy-hoodie.svg",
+    "thumbnailUrls": [
+      "/assets/products/thorn-heavy-hoodie.svg",
+      "/assets/products/thorn-heavy-hoodie-back.svg"
+    ],
+    "isFeatured": true,
+    "isActive": true,
+    "variants": [
+      {
+        "id": "var_2_s",
+        "productId": "prod_2",
+        "sku": "VR-HD-CHR-S",
+        "size": "S",
+        "color": "CHARCOAL",
+        "price": 780000,
+        "stock": 8
+      },
+      {
+        "id": "var_2_m",
+        "productId": "prod_2",
+        "sku": "VR-HD-CHR-M",
+        "size": "M",
+        "color": "CHARCOAL",
+        "price": 780000,
+        "stock": 14
+      },
+      {
+        "id": "var_2_l",
+        "productId": "prod_2",
+        "sku": "VR-HD-CHR-L",
+        "size": "L",
+        "color": "CHARCOAL",
+        "price": 780000,
+        "stock": 10
+      },
+      {
+        "id": "var_2_xl",
+        "productId": "prod_2",
+        "sku": "VR-HD-CHR-XL",
+        "size": "XL",
+        "color": "CHARCOAL",
+        "price": 780000,
+        "stock": 6
+      }
+    ]
+  },
+  {
+    "id": "prod_3",
+    "slug": "static-bloom-lp",
+    "name": "Static Bloom LP",
+    "description": "Limited edition 180g clear vinyl with smoke swirl packaging. Includes lyric booklet and poster.",
+    "category": "VINYL",
+    "badge": "LIMITED",
+    "details": "180g heavyweight vinyl pressed in clear with black smoke swirl. Gatefold packaging with silver foil stamping.",
+    "shippingInfo": "Dikemas khusus dengan kardus double-wall vinyl mailer untuk mencegah benturan dan lipatan sudut cover.",
+    "returnsInfo": "Retur hanya berlaku jika piringan hitam mengalami skipping atau cacat audio permanen.",
+    "imageUrl": "/assets/products/static-bloom-lp.svg",
+    "thumbnailUrls": [
+      "/assets/products/static-bloom-lp.svg",
+      "/assets/products/static-bloom-lp-gatefold.svg"
+    ],
+    "isFeatured": true,
+    "isActive": true,
+    "variants": [
+      {
+        "id": "var_3_os",
+        "productId": "prod_3",
+        "sku": "VR-LP-CLR-OS",
+        "size": "ONE SIZE",
+        "color": "CLEAR SMOKE",
+        "price": 320000,
+        "stock": 25
+      }
+    ]
+  },
+  {
+    "id": "prod_4",
+    "slug": "barbed-tote-bag",
+    "name": "Barbed Tote Bag",
+    "description": "Heavyweight 16oz canvas tote with industrial stitch reinforcement and barbed wire graphics.",
+    "category": "ACCESSORIES",
+    "badge": "HOT",
+    "details": "16oz heavy organic canvas, reinforced cross-stitching on handles, inner zippered stash pocket.",
+    "shippingInfo": "Dikirim dalam 1-3 hari kerja.",
+    "returnsInfo": "Garansi retur 7 hari untuk cacat jahitan.",
+    "imageUrl": "/assets/products/barbed-tote-bag.svg",
+    "thumbnailUrls": [
+      "/assets/products/barbed-tote-bag.svg"
+    ],
+    "isFeatured": true,
+    "isActive": true,
+    "variants": [
+      {
+        "id": "var_4_os",
+        "productId": "prod_4",
+        "sku": "VR-TB-NAT-OS",
+        "size": "ONE SIZE",
+        "color": "NATURAL",
+        "price": 220000,
+        "stock": 30
+      }
+    ]
+  },
+  {
+    "id": "prod_5",
+    "slug": "midnight-bloom-tee",
+    "name": "Midnight Bloom Tee",
+    "description": "Glow-in-the-dark graphic prints on boxy heavyweight tees. Gone when the box is empty.",
+    "category": "T-SHIRT",
+    "badge": "NEW",
+    "details": "280gsm combed cotton, special photo-luminescent screenprint, ribbed collar.",
+    "shippingInfo": "Dikirim dalam 1-3 hari kerja.",
+    "returnsInfo": "Garansi retur 7 hari untuk cacat produksi.",
+    "imageUrl": "/assets/products/midnight-bloom-tee.svg",
+    "thumbnailUrls": [
+      "/assets/products/midnight-bloom-tee.svg"
+    ],
+    "isFeatured": false,
+    "isActive": true,
+    "variants": [
+      {
+        "id": "var_5_s",
+        "productId": "prod_5",
+        "sku": "VR-MB-BLK-S",
+        "size": "S",
+        "color": "FADED BLACK",
+        "price": 380000,
+        "stock": 10
+      },
+      {
+        "id": "var_5_m",
+        "productId": "prod_5",
+        "sku": "VR-MB-BLK-M",
+        "size": "M",
+        "color": "FADED BLACK",
+        "price": 380000,
+        "stock": 15
+      },
+      {
+        "id": "var_5_l",
+        "productId": "prod_5",
+        "sku": "VR-MB-BLK-L",
+        "size": "L",
+        "color": "FADED BLACK",
+        "price": 380000,
+        "stock": 12
+      },
+      {
+        "id": "var_5_xl",
+        "productId": "prod_5",
+        "sku": "VR-MB-BLK-XL",
+        "size": "XL",
+        "color": "FADED BLACK",
+        "price": 380000,
+        "stock": 8
+      }
+    ]
+  },
+  {
+    "id": "prod_6",
+    "slug": "crimson-zip-hoodie",
+    "name": "Crimson Zip Hoodie",
+    "description": "Custom YKK two-way zipper hoodie with embroidered rose emblem on chest.",
+    "category": "HOODIE",
+    "badge": null,
+    "details": "420gsm loopback fleece, custom gunmetal YKK two-way zipper, tonal embroidery.",
+    "shippingInfo": "Dikirim dalam 1-3 hari kerja.",
+    "returnsInfo": "Garansi retur 7 hari untuk cacat produksi.",
+    "imageUrl": "/assets/products/crimson-zip-hoodie.svg",
+    "thumbnailUrls": [
+      "/assets/products/crimson-zip-hoodie.svg"
+    ],
+    "isFeatured": false,
+    "isActive": true,
+    "variants": [
+      {
+        "id": "var_6_s",
+        "productId": "prod_6",
+        "sku": "VR-ZH-CRM-S",
+        "size": "S",
+        "color": "DEEP CRIMSON",
+        "price": 850000,
+        "stock": 5
+      },
+      {
+        "id": "var_6_m",
+        "productId": "prod_6",
+        "sku": "VR-ZH-CRM-M",
+        "size": "M",
+        "color": "DEEP CRIMSON",
+        "price": 850000,
+        "stock": 8
+      },
+      {
+        "id": "var_6_l",
+        "productId": "prod_6",
+        "sku": "VR-ZH-CRM-L",
+        "size": "L",
+        "color": "DEEP CRIMSON",
+        "price": 850000,
+        "stock": 6
+      },
+      {
+        "id": "var_6_xl",
+        "productId": "prod_6",
+        "sku": "VR-ZH-CRM-XL",
+        "size": "XL",
+        "color": "DEEP CRIMSON",
+        "price": 850000,
+        "stock": 4
+      }
+    ]
+  },
+  {
+    "id": "prod_7",
+    "slug": "noise-floor-12-ep",
+    "name": "Noise Floor 12\" EP",
+    "description": "Recorded live at Jakarta & Bandung. 45RPM audiophile pressing. Limited to 300 numbered copies.",
+    "category": "VINYL",
+    "badge": "SOLD OUT",
+    "details": "12-inch 45 RPM audiophile cut. Red marble vinyl, hand-numbered outer sleeve.",
+    "shippingInfo": "Barang habis / Sold out.",
+    "returnsInfo": "Tidak menerima penukaran untuk produk edisi terbatas yang habis.",
+    "imageUrl": "/assets/products/noise-floor-12-ep.svg",
+    "thumbnailUrls": [
+      "/assets/products/noise-floor-12-ep.svg"
+    ],
+    "isFeatured": false,
+    "isActive": true,
+    "variants": [
+      {
+        "id": "var_7_os",
+        "productId": "prod_7",
+        "sku": "VR-NF-MAR-OS",
+        "size": "ONE SIZE",
+        "color": "RED MARBLE",
+        "price": 280000,
+        "stock": 0
+      }
+    ]
+  },
+  {
+    "id": "prod_8",
+    "slug": "rose-enamel-pin-set",
+    "name": "Rose Enamel Pin Set",
+    "description": "Set of 3 die-cast hard enamel pins with rubber clutch backings on branded cardboard backer.",
+    "category": "ACCESSORIES",
+    "badge": null,
+    "details": "Hard enamel, polished black nickel plating, dual rubber pin posts for secure hold.",
+    "shippingInfo": "Dikirim dalam 1-3 hari kerja.",
+    "returnsInfo": "Garansi retur 7 hari.",
+    "imageUrl": "/assets/products/rose-enamel-pin-set.svg",
+    "thumbnailUrls": [
+      "/assets/products/rose-enamel-pin-set.svg"
+    ],
+    "isFeatured": false,
+    "isActive": true,
+    "variants": [
+      {
+        "id": "var_8_os",
+        "productId": "prod_8",
+        "sku": "VR-PIN-SIL-OS",
+        "size": "ONE SIZE",
+        "color": "ANTIQUE SILVER",
+        "price": 140000,
+        "stock": 40
+      }
+    ]
+  },
+  {
+    "id": "prod_ticket_jkt",
+    "slug": "ticket-jakarta-tour-2026",
+    "name": "VOID/ROSE Live in Jakarta 2026",
+    "description": "Official Tour Ticket: VOID/ROSE Live at Istora Senayan, Jakarta. 14 November 2026. Southeast Asia Headline Run.",
+    "category": "TICKETS",
+    "badge": "TOUR",
+    "details": "Istora Senayan, Jakarta. Open Gate: 17:00 WIB. Show Starts: 19:30 WIB. E-Ticket QR code issued upon payment. Age limit: 15+.",
+    "shippingInfo": "E-Ticket Instan dikirim via Email dengan QR Code akses masuk.",
+    "returnsInfo": "Tiket konser tidak dapat di-refund setelah pembayaran berhasil.",
+    "imageUrl": "/assets/products/tour-ticket.svg",
+    "thumbnailUrls": [
+      "/assets/products/tour-ticket.svg"
+    ],
+    "isFeatured": false,
+    "isActive": true,
+    "variants": [
+      {
+        "id": "var_tkt_jkt_ga",
+        "productId": "prod_ticket_jkt",
+        "sku": "VR-TKT-JKT-GA",
+        "size": "FESTIVAL GA",
+        "color": "GENERAL",
+        "price": 450000,
+        "stock": 200
+      },
+      {
+        "id": "var_tkt_jkt_vip",
+        "productId": "prod_ticket_jkt",
+        "sku": "VR-TKT-JKT-VIP",
+        "size": "VIP NOISE PASS",
+        "color": "VIP",
+        "price": 850000,
+        "stock": 50
+      }
+    ]
+  },
+  {
+    "id": "prod_ticket_bdg",
+    "slug": "ticket-bandung-tour-2026",
+    "name": "VOID/ROSE Live in Bandung 2026",
+    "description": "Official Tour Ticket: VOID/ROSE Live at Saparua Hall, Bandung. 21 November 2026. Southeast Asia Headline Run.",
+    "category": "TICKETS",
+    "badge": "TOUR",
+    "details": "Saparua Hall, Bandung. Open Gate: 17:00 WIB. Show Starts: 19:30 WIB. E-Ticket QR code issued upon payment.",
+    "shippingInfo": "E-Ticket Instan dikirim via Email dengan QR Code akses masuk.",
+    "returnsInfo": "Tiket konser tidak dapat di-refund setelah pembayaran berhasil.",
+    "imageUrl": "/assets/products/tour-ticket.svg",
+    "thumbnailUrls": [
+      "/assets/products/tour-ticket.svg"
+    ],
+    "isFeatured": false,
+    "isActive": true,
+    "variants": [
+      {
+        "id": "var_tkt_bdg_ga",
+        "productId": "prod_ticket_bdg",
+        "sku": "VR-TKT-BDG-GA",
+        "size": "FESTIVAL GA",
+        "color": "GENERAL",
+        "price": 350000,
+        "stock": 150
+      },
+      {
+        "id": "var_tkt_bdg_vip",
+        "productId": "prod_ticket_bdg",
+        "sku": "VR-TKT-BDG-VIP",
+        "size": "VIP NOISE PASS",
+        "color": "VIP",
+        "price": 750000,
+        "stock": 35
+      }
+    ]
+  },
+  {
+    "id": "prod_ticket_sgp",
+    "slug": "ticket-singapore-tour-2026",
+    "name": "VOID/ROSE Live in Singapore 2026",
+    "description": "Official Tour Ticket: VOID/ROSE Live at The Substation, Singapore. 05 December 2026. Southeast Asia Headline Run.",
+    "category": "TICKETS",
+    "badge": "TOUR",
+    "details": "The Substation, Singapore. Doors: 18:30 SGT. Show: 20:00 SGT. E-Ticket QR code issued upon payment.",
+    "shippingInfo": "Instant E-Ticket sent to your email with check-in QR code.",
+    "returnsInfo": "Concert tickets are non-refundable once purchased.",
+    "imageUrl": "/assets/products/tour-ticket.svg",
+    "thumbnailUrls": [
+      "/assets/products/tour-ticket.svg"
+    ],
+    "isFeatured": false,
+    "isActive": true,
+    "variants": [
+      {
+        "id": "var_tkt_sgp_ga",
+        "productId": "prod_ticket_sgp",
+        "sku": "VR-TKT-SGP-GA",
+        "size": "FESTIVAL GA",
+        "color": "GENERAL",
+        "price": 650000,
+        "stock": 100
+      },
+      {
+        "id": "var_tkt_sgp_vip",
+        "productId": "prod_ticket_sgp",
+        "sku": "VR-TKT-SGP-VIP",
+        "size": "VIP NOISE PASS",
+        "color": "VIP",
+        "price": 1100000,
+        "stock": 25
+      }
+    ]
+  }
+]

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="100%" height="100%">
+  <rect width="600" height="600" fill="#D0B8A8"/>
+  <rect x="20" y="20" width="560" height="560" fill="none" stroke="#1A1A1A" stroke-width="6"/>
+  
+  <g transform="translate(100, 50)">
+    <!-- Hood -->
+    <path d="M150 70 Q200 10 250 70 Q200 40 150 70 Z" fill="#6A1B29" stroke="#1A1A1A" stroke-width="6"/>
+    <!-- Body & Sleeves -->
+    <path d="M130 70 L270 70 L390 150 L340 230 L280 180 L280 440 L120 440 L120 180 L60 230 L10 150 Z" 
+          fill="#821E31" stroke="#1A1A1A" stroke-width="8" stroke-linejoin="round"/>
+    <!-- Center Zipper line -->
+    <line x1="200" y1="70" x2="200" y2="440" stroke="#1A1A1A" stroke-width="6" stroke-dasharray="8 4"/>
+    <!-- Split Kangaroo Pocket -->
+    <path d="M135 320 L190 320 L190 410 L120 410 Z" fill="#6A1B29" stroke="#1A1A1A" stroke-width="4"/>
+    <path d="M265 320 L210 320 L210 410 L280 410 Z" fill="#6A1B29" stroke="#1A1A1A" stroke-width="4"/>
+    
+    <!-- Embroidered rose on chest -->
+    <circle cx="160" cy="160" r="18" fill="#F8EDE3" stroke="#1A1A1A" stroke-width="3"/>
+  </g>
+  
+  <rect x="360" y="490" width="180" height="40" fill="#1A1A1A" stroke="#1A1A1A" stroke-width="3"/>
+  <text x="450" y="516" font-family="'Archivo Black', sans-serif" font-size="13" fill="#FFFFFF" text-anchor="middle">TWO-WAY ZIPPER</text>
+</svg>
