@@ -97,10 +97,10 @@ export const CheckoutPage: React.FC = () => {
       // Clear local cart
       clearCart();
 
-      // If simulated mode, redirect to Dev Pay page with selected payment method
-      if (result.paymentMode === 'simulated') {
+      // If simulated mode (or no midtrans token), redirect to in-page billing simulation
+      if (result.paymentMode === 'simulated' || !result.paymentToken) {
         const methodParam = encodeURIComponent(selectedMethodId);
-        navigate(`/dev/pay/${result.orderNumber}?token=${result.accessToken}&method=${methodParam}`);
+        navigate(`/pay/${result.orderNumber}?token=${result.accessToken}&method=${methodParam}`);
         return;
       }
 
@@ -113,7 +113,8 @@ export const CheckoutPage: React.FC = () => {
           onClose: () => navigate(result.trackingUrl)
         });
       } else {
-        navigate(result.trackingUrl);
+        const methodParam = encodeURIComponent(selectedMethodId);
+        navigate(`/pay/${result.orderNumber}?token=${result.accessToken}&method=${methodParam}`);
       }
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : t.alerts.checkoutError;

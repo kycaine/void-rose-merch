@@ -87,11 +87,10 @@ paymentsRouter.post(
   ),
   async (c) => {
     const paymentMode = c.env.PAYMENT_MODE || 'simulated';
-    const env = c.env.ENVIRONMENT || 'development';
 
-    // MUST return 404 when PAYMENT_MODE != simulated or ENVIRONMENT === production
-    if (paymentMode !== 'simulated' || env === 'production') {
-      return c.json({ error: 'Not Found' }, 404);
+    // Must return 404 only when PAYMENT_MODE is not simulated
+    if (paymentMode !== 'simulated') {
+      return c.json({ error: 'Payment simulation is only enabled when PAYMENT_MODE=simulated' }, 404);
     }
 
     try {

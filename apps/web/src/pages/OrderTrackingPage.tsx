@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useSearchParams, Link } from 'react-router-dom';
-import { Truck, AlertCircle, RefreshCw, Copy, Check } from 'lucide-react';
+import { useParams, useSearchParams, useNavigate, Link } from 'react-router-dom';
+import { Truck, AlertCircle, RefreshCw, Copy, Check, Clock } from 'lucide-react';
 import { Button } from '../components/Button';
-import { getOrder, createPayment, formatIDR } from '../lib/api';
+import { getOrder, formatIDR } from '../lib/api';
 import { Order, getOrderStatusLabel } from '@merch-band/shared';
 import { useTranslation } from '../i18n/translations';
 
@@ -10,6 +10,7 @@ export const OrderTrackingPage: React.FC = () => {
   const { orderNumber } = useParams<{ orderNumber: string }>();
   const [searchParams] = useSearchParams();
   const token = searchParams.get('token') || undefined;
+  const navigate = useNavigate();
   const { t, lang } = useTranslation();
 
   const [order, setOrder] = useState<Order | null>(null);
@@ -36,18 +37,10 @@ export const OrderTrackingPage: React.FC = () => {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  const handleRepay = async () => {
+  const handleRepay = () => {
     if (!order || !order.accessToken) return;
-    setRepaying(true);
-    try {
-      const res = await createPayment(order.orderNumber, order.accessToken);
-      if (res.paymentUrl) {
-        window.location.href = res.paymentUrl;
-      }
-    } catch (err) {
-      alert(t.alerts.repayError + (err as Error).message);
-      setRepaying(false);
-    }
+    const methodParam = encodeURIComponent(order.paymentMethod || 'qris');
+    navigate(`/pay/${order.orderNumber}?token=${order.accessToken}&method=${methodParam}`);
   };
 
   if (loading) {
@@ -155,20 +148,52 @@ export const OrderTrackingPage: React.FC = () => {
           </div>
         )}
 
-        {/* Re-pay button if failed or pending */}
-        {['pending', 'failed', 'expired'].includes(order.status) && (
-          <div className="bg-amber-50 border-3 border-ink p-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div className="font-mono text-xs text-ink">
+        {/* In-page Billing Box if pending */}
+        {order.status === 'pending' && (
+          <div className="bg-[#FFE600] border-4 border-ink p-5 sm:p-6 shadow-[4px_4px_0px_#1A1A1A] space-y-4">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b-2 border-ink pb-3 gap-2">
+              <div className="flex items-center space-x-2">
+                <Clock className="w-5 h-5 text-ink animate-pulse" />
+                <span className="font-display text-lg uppercase text-ink">
+                  {lang === 'id' ? 'MENUNGGU PEMBAYARAN' : 'AWAITING PAYMENT'}
+                </span>
+              </div>
+              <span className="font-mono text-xs font-bold bg-ink text-white px-2.5 py-1 uppercase">
+                {order.paymentMethod ? order.paymentMethod.replace('_', ' ').toUpperCase() : 'SIMULATED / VA / QRIS'}
+              </span>
+            </div>
+
+            <p className="font-mono text-xs text-ink leading-relaxed">
+              {lang === 'id'
+                ? 'Pesanan Anda telah dicatat dan stok telah direservasi. Silakan selesaikan pembayaran melalui simulator atau billing di bawah ini:'
+                : 'Your order has been recorded and inventory reserved. Please complete payment using the in-page billing or payment simulator below:'}
+            </p>
+
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-1">
+              <button
+                type="button"
+                onClick={handleRepay}
+                id="open-payment-page-btn"
+                className="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-display text-base uppercase py-3.5 px-4 border-3 border-ink shadow-[4px_4px_0px_#1A1A1A] hover:shadow-[6px_6px_0px_#1A1A1A] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0.5 active:translate-y-0.5 transition-all flex items-center justify-center space-x-2 cursor-pointer"
+              >
+                <span>{lang === 'id' ? 'BUKA BILLING & SIMULATOR PEMBAYARAN →' : 'OPEN BILLING & PAYMENT SIMULATOR →'}</span>
+              </button>
+            </div>
+          </div>
+        )}
+
+        {['failed', 'expired', 'cancelled'].includes(order.status) && (
+          <div className="bg-red-50 border-3 border-red-700 p-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="font-mono text-xs text-red-800">
               <strong>Status #{order.orderNumber}: {order.status.toUpperCase()}.</strong>
             </div>
             <Button
               variant="primary"
               size="sm"
-              disabled={repaying}
               onClick={handleRepay}
             >
               <RefreshCw className="w-4 h-4 mr-1" />
-              {repaying ? t.orderTracking.repaying : t.orderTracking.repayBtn}
+              {t.orderTracking.repayBtn}
             </Button>
           </div>
         )}

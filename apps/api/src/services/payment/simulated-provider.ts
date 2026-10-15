@@ -10,7 +10,8 @@ export class SimulatedProvider implements PaymentProvider {
   }
 
   async createTransaction(order: Order, _items: OrderItem[]): Promise<CreateTransactionResult> {
-    const redirectUrl = `${this.appUrl}/dev/pay/${order.orderNumber}?token=${order.accessToken}`;
+    const methodParam = order.paymentMethod ? `&method=${encodeURIComponent(order.paymentMethod)}` : '';
+    const redirectUrl = `${this.appUrl}/dev/pay/${order.orderNumber}?token=${order.accessToken}${methodParam}`;
     return {
       token: `sim_token_${order.orderNumber}_${Date.now()}`,
       redirectUrl

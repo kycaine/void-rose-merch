@@ -57,6 +57,7 @@ checkoutRouter.post('/', zValidator('json', CheckoutFormSchema), async (c) => {
       input,
       (p) => c.executionCtx.waitUntil(p)
     );
+    order.paymentMethod = input.paymentMethod || 'qris';
 
     // 2. Initialize payment with selected provider
     const paymentMode = c.env.PAYMENT_MODE || 'simulated';

@@ -5,7 +5,7 @@ compatibility_flags = ["nodejs_compat"]
 
 [vars]
 ENVIRONMENT = "production"
-PAYMENT_MODE = "midtrans"
+PAYMENT_MODE = "simulated"
 MIDTRANS_IS_PRODUCTION = "false"
 RESEND_FROM = "VOID/ROSE Merch <onboarding@resend.dev>"
 APP_URL = "https://voidrose.reternia.com"
