@@ -6,7 +6,7 @@ import { Order, getOrderStatusLabel } from '@merch-band/shared';
 import { useTranslation } from '../i18n/translations';
 
 export const AdminPage: React.FC = () => {
-  const { lang, isId } = useTranslation();
+  const { lang, isId, t } = useTranslation();
   const [token, setToken] = useState<string>(() => sessionStorage.getItem('vr_admin_token') || '');
   const [inputToken, setInputToken] = useState('');
   const [authenticated, setAuthenticated] = useState(false);
@@ -27,7 +27,7 @@ export const AdminPage: React.FC = () => {
       setAuthenticated(true);
       sessionStorage.setItem('vr_admin_token', secret);
     } catch (err: unknown) {
-      setAuthError(isId ? 'Token admin salah atau tidak valid' : 'Admin secret token is invalid');
+      setAuthError(t.alerts.adminAuthError);
       setAuthenticated(false);
     } finally {
       setLoading(false);
@@ -62,7 +62,7 @@ export const AdminPage: React.FC = () => {
       setTrackingNumber('');
       verifyAndLoad(token);
     } catch (err) {
-      alert((isId ? 'Gagal mengupdate pengiriman: ' : 'Failed to update shipment: ') + (err as Error).message);
+      alert(t.alerts.adminShipError + (err as Error).message);
     } finally {
       setShippingLoading(false);
     }

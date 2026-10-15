@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
@@ -13,8 +13,15 @@ import { OrderTrackingPage } from './pages/OrderTrackingPage';
 import { OrderLookupPage } from './pages/OrderLookupPage';
 import { AdminPage } from './pages/AdminPage';
 import { FloatingCart } from './components/FloatingCart';
+import { useLanguageStore } from './store/languageStore';
 
 export const App: React.FC = () => {
+  const language = useLanguageStore((s) => s.language);
+
+  useEffect(() => {
+    document.documentElement.lang = language;
+  }, [language]);
+
   return (
     <BrowserRouter>
       <div className="min-h-screen flex flex-col bg-bg text-ink relative">
