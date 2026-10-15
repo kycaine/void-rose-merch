@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { ShoppingBag, Trash2, ArrowRight, X, ChevronUp, ChevronDown, CheckCircle2 } from 'lucide-react';
 import { useCartStore } from '../store/cartStore';
@@ -68,68 +69,79 @@ export const FloatingCart: React.FC = () => {
 
   return (
     <>
-      {/* 1. Flying Ghost Items (Thrown Projectile Animation) */}
-      <div className="fixed inset-0 pointer-events-none z-[9999] overflow-hidden">
-        {flyingItems.map((fly) => {
-          let targetX = window.innerWidth - 80;
-          let targetY = window.innerHeight - 80;
+      {/* 1. Flying Ghost Items (Rendered directly to document.body via Portal to guarantee top z-index) */}
+      {flyingItems.length > 0 &&
+        typeof document !== 'undefined' &&
+        createPortal(
+          <div
+            id="flying-cart-portal"
+            className="fixed inset-0 pointer-events-none"
+            style={{ zIndex: 999999 }}
+          >
+            {flyingItems.map((fly) => {
+              let targetX = window.innerWidth - 80;
+              let targetY = window.innerHeight - 80;
 
-          if (cartAnchorRef.current) {
-            const rect = cartAnchorRef.current.getBoundingClientRect();
-            targetX = rect.left + rect.width / 2;
-            targetY = rect.top + rect.height / 2;
-          }
+              if (cartAnchorRef.current) {
+                const rect = cartAnchorRef.current.getBoundingClientRect();
+                targetX = rect.left + rect.width / 2;
+                targetY = rect.top + rect.height / 2;
+              }
 
-          const dx = targetX - fly.startX;
-          const dy = targetY - fly.startY;
+              const dx = targetX - fly.startX;
+              const dy = targetY - fly.startY;
 
-          return (
-            <div
-              key={fly.id}
-              style={{
-                left: `${fly.startX}px`,
-                top: `${fly.startY}px`,
-                // Pass CSS variables for the parabolic thrown arc
-                ['--target-x' as string]: `${dx}px`,
-                ['--target-y' as string]: `${dy}px`
-              }}
-              className="absolute animate-fly-x pointer-events-none will-change-transform z-[9999]"
-              onAnimationEnd={(e) => {
-                if (e.target === e.currentTarget || (e as React.AnimationEvent).animationName === 'flyThrowX') {
-                  triggerCartBump();
-                  removeFly(fly.id);
-                }
-              }}
-            >
-              <div className="animate-fly-y pointer-events-none will-change-transform">
-                {/* Card Thumbnail Mini Preview: represents the actual product card floating into the cart */}
-                <div className="-translate-x-1/2 -translate-y-1/2 w-14 h-18 sm:w-16 sm:h-20 bg-surface border-3 border-ink rounded-lg shadow-[4px_4px_0px_#1A1A1A] flex flex-col items-center justify-between p-1.5 overflow-hidden pointer-events-none">
-                  <div className="w-full flex-1 flex items-center justify-center overflow-hidden bg-accent-2/60 border border-ink/20 rounded-xs">
-                    {fly.imageUrl ? (
-                      <img
-                        src={fly.imageUrl}
-                        alt={fly.title || 'Product'}
-                        className="w-full h-full object-contain"
-                      />
-                    ) : (
-                      <ShoppingBag className="w-6 h-6 text-brand" />
-                    )}
-                  </div>
-                  {fly.title && (
-                    <div className="w-full text-[8px] font-mono font-bold text-ink truncate text-center pt-0.5 leading-tight">
-                      {fly.title}
+              return (
+                <div
+                  key={fly.id}
+                  style={{
+                    position: 'fixed',
+                    left: `${fly.startX}px`,
+                    top: `${fly.startY}px`,
+                    ['--target-x' as string]: `${dx}px`,
+                    ['--target-y' as string]: `${dy}px`,
+                    zIndex: 999999,
+                    pointerEvents: 'none'
+                  }}
+                  className="animate-fly-x"
+                  onAnimationEnd={(e) => {
+                    if (e.target === e.currentTarget || (e as React.AnimationEvent).animationName === 'flyThrowX') {
+                      triggerCartBump();
+                      removeFly(fly.id);
+                    }
+                  }}
+                >
+                  <div className="animate-fly-y pointer-events-none will-change-transform">
+                    {/* Card Thumbnail Mini Preview: represents the actual product card floating into the cart */}
+                    <div className="-translate-x-1/2 -translate-y-1/2 w-16 h-20 sm:w-20 sm:h-24 bg-surface border-3 border-ink rounded-lg shadow-[6px_6px_0px_#1A1A1A] flex flex-col items-center justify-between p-1.5 overflow-hidden pointer-events-none">
+                      <div className="w-full flex-1 flex items-center justify-center overflow-hidden bg-accent-2/70 border border-ink/20 rounded-xs">
+                        {fly.imageUrl ? (
+                          <img
+                            src={fly.imageUrl}
+                            alt={fly.title || 'Product'}
+                            className="w-full h-full object-contain"
+                          />
+                        ) : (
+                          <ShoppingBag className="w-6 h-6 text-brand" />
+                        )}
+                      </div>
+                      {fly.title && (
+                        <div className="w-full text-[9px] font-mono font-bold text-ink truncate text-center pt-0.5 leading-tight">
+                          {fly.title}
+                        </div>
+                      )}
+                      {/* Neo-brutalist spark badge */}
+                      <div className="absolute -top-1.5 -right-1.5 bg-[#FFE600] text-ink font-mono text-[9px] font-black px-1.5 py-0.2 border-2 border-ink shadow-xs">
+                        +1
+                      </div>
                     </div>
-                  )}
-                  {/* Neo-brutalist spark badge */}
-                  <div className="absolute -top-1.5 -right-1.5 bg-[#FFE600] text-ink font-mono text-[9px] font-black px-1.5 py-0.2 border-2 border-ink shadow-xs">
-                    +1
                   </div>
                 </div>
-              </div>
-            </div>
-          );
-        })}
-      </div>
+              );
+            })}
+          </div>,
+          document.body
+        )}
 
       {/* 2. Floating Cart Container in Bottom Right */}
       <div
