@@ -50,10 +50,10 @@ export const DevPayPage: React.FC = () => {
       })
       .catch((err) => {
         console.error(err);
-        setErrorMsg('Pesanan tidak ditemukan atau link pembayaran tidak valid');
+        setErrorMsg(t.alerts.invalidLink);
       })
       .finally(() => setLoading(false));
-  }, [orderNumber, token]);
+  }, [orderNumber, token, t]);
 
   // Countdown timer simulation
   useEffect(() => {
@@ -93,7 +93,7 @@ export const DevPayPage: React.FC = () => {
         navigate(`/order/${orderNumber}?token=${token || order?.accessToken}`);
       }
     } catch (err: unknown) {
-      const msg = err instanceof Error ? err.message : 'Gagal memproses simulasi pembayaran';
+      const msg = err instanceof Error ? err.message : t.alerts.simPayError;
       setErrorMsg(msg);
       setProcessing(false);
     }
@@ -102,7 +102,7 @@ export const DevPayPage: React.FC = () => {
   if (loading) {
     return (
       <div className="max-w-2xl mx-auto px-4 py-20 text-center font-mono">
-        <div className="animate-pulse font-display text-2xl">MEMUAT SIMULASI PEMBAYARAN...</div>
+        <div className="animate-pulse font-display text-2xl">{t.devPay.loading}</div>
       </div>
     );
   }
@@ -125,16 +125,16 @@ export const DevPayPage: React.FC = () => {
           <div className="space-y-1">
             <div className="inline-flex items-center space-x-2 bg-ink text-white px-2.5 py-0.5 font-mono text-xs font-bold tracking-widest uppercase">
               <AlertTriangle className="w-3.5 h-3.5 text-[#FFE600]" />
-              <span>DEV MODE — MULTI-PAYMENT SIMULATOR</span>
+              <span>{t.devPay.badge}</span>
             </div>
             <p className="font-mono text-xs font-bold text-ink">
-              Uji coba aneka opsi pembayaran: QRIS, Aneka Virtual Account Bank, dan PayLater.
+              {t.devPay.subtitle}
             </p>
           </div>
 
           {/* Quick Method Switcher Dropdown / Pills */}
           <div className="flex items-center space-x-1 font-mono text-xs font-bold">
-            <span className="text-ink/70 mr-1 hidden sm:inline">Pindah Opsi:</span>
+            <span className="text-ink/70 mr-1 hidden sm:inline">{t.devPay.switchMethod}</span>
             <select
               value={currentMethodId}
               onChange={(e) => {
@@ -245,10 +245,10 @@ export const DevPayPage: React.FC = () => {
 
               <div className="space-y-1 font-mono text-xs">
                 <p className="font-bold text-ink">
-                  Scan dengan GoPay, OVO, Dana, ShopeePay, BCA, Livin, atau Mobile Banking lainnya.
+                  {t.devPay.qrisInstruction}
                 </p>
                 <p className="text-[11px] text-ink/70">
-                  Verifikasi transaksi berlangsung otomatis dalam 5-10 detik.
+                  {t.devPay.qrisNotice}
                 </p>
               </div>
 
@@ -261,7 +261,7 @@ export const DevPayPage: React.FC = () => {
                 className="w-full bg-emerald-600 hover:bg-emerald-700 disabled:opacity-50 text-white font-display text-base uppercase py-3.5 px-4 border-3 border-ink shadow-[4px_4px_0px_#1A1A1A] hover:shadow-[6px_6px_0px_#1A1A1A] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0.5 active:translate-y-0.5 transition-all flex items-center justify-center space-x-2 cursor-pointer"
               >
                 <CheckCircle2 className="w-5 h-5" />
-                <span>SIMULASI SCAN & BAYAR QRIS BERHASIL</span>
+                <span>{t.devPay.qrisBtn}</span>
               </button>
             </div>
           )}
@@ -272,7 +272,7 @@ export const DevPayPage: React.FC = () => {
               <div className="bg-white border-3 border-ink p-5 space-y-3 shadow-sm">
                 <div className="flex items-center justify-between border-b-2 border-ink/20 pb-2">
                   <span className="font-mono text-xs text-ink/70 uppercase">
-                    NOMOR VIRTUAL ACCOUNT
+                    {t.devPay.vaLabel}
                   </span>
                   <span className="font-mono text-xs font-bold text-brand bg-brand/10 px-2 py-0.5 border border-brand/30">
                     {currentMethod.name}
@@ -291,12 +291,12 @@ export const DevPayPage: React.FC = () => {
                     {copiedVA ? (
                       <>
                         <Check className="w-4 h-4 text-emerald-700" />
-                        <span className="text-emerald-800">Tersalin!</span>
+                        <span className="text-emerald-800">{t.devPay.copiedVa}</span>
                       </>
                     ) : (
                       <>
                         <Copy className="w-4 h-4" />
-                        <span>Salin VA</span>
+                        <span>{t.devPay.copyVa}</span>
                       </>
                     )}
                   </button>
@@ -326,7 +326,7 @@ export const DevPayPage: React.FC = () => {
                 className="w-full bg-emerald-600 hover:bg-emerald-700 disabled:opacity-50 text-white font-display text-base uppercase py-3.5 px-4 border-3 border-ink shadow-[4px_4px_0px_#1A1A1A] hover:shadow-[6px_6px_0px_#1A1A1A] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0.5 active:translate-y-0.5 transition-all flex items-center justify-center space-x-2 cursor-pointer"
               >
                 <CheckCircle2 className="w-5 h-5" />
-                <span>SIMULASI TRANSFER {currentMethod.shortName} BERHASIL</span>
+                <span>{lang === 'id' ? `SIMULASI TRANSFER ${currentMethod.shortName} BERHASIL` : `SIMULATE ${currentMethod.shortName} TRANSFER SUCCESS`}</span>
               </button>
             </div>
           )}
@@ -337,39 +337,39 @@ export const DevPayPage: React.FC = () => {
               <div className="bg-white border-3 border-ink p-5 space-y-3 shadow-sm">
                 <div className="flex items-center justify-between border-b-2 border-ink/20 pb-2">
                   <span className="font-mono text-xs text-ink/70 uppercase">
-                    PEMBIAYAAN {currentMethod.shortName.toUpperCase()}
+                    {lang === 'id' ? `PEMBIAYAAN ${currentMethod.shortName.toUpperCase()}` : `${currentMethod.shortName.toUpperCase()} FINANCING`}
                   </span>
                   <span className="bg-[#FFE600] text-ink font-mono text-xs font-bold px-2 py-0.5 border border-ink">
-                    Limit: Rp 15.000.000
+                    {t.devPay.paylaterLimit}
                   </span>
                 </div>
 
                 <div className="space-y-2">
                   <label className="block font-mono text-xs font-bold text-ink uppercase">
-                    PILIH SKEMA CICILAN:
+                    {t.devPay.installmentTitle}
                   </label>
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 font-mono text-xs">
                     {[
-                      { tenor: 1, label: '30 Hari', rate: '0% Bunga' },
-                      { tenor: 3, label: '3 Bulan', rate: '2.5% / bln' },
-                      { tenor: 6, label: '6 Bulan', rate: '2.5% / bln' },
-                      { tenor: 12, label: '12 Bulan', rate: '2.5% / bln' }
-                    ].map((t) => {
-                      const monthly = Math.round((order?.total || 0) / t.tenor);
-                      const isSelected = selectedTenor === t.tenor;
+                      { tenor: 1, label: lang === 'id' ? '30 Hari' : '30 Days', rate: lang === 'id' ? '0% Bunga' : '0% Interest' },
+                      { tenor: 3, label: lang === 'id' ? '3 Bulan' : '3 Months', rate: lang === 'id' ? '2.5% / bln' : '2.5% / mo' },
+                      { tenor: 6, label: lang === 'id' ? '6 Bulan' : '6 Months', rate: lang === 'id' ? '2.5% / bln' : '2.5% / mo' },
+                      { tenor: 12, label: lang === 'id' ? '12 Bulan' : '12 Months', rate: lang === 'id' ? '2.5% / bln' : '2.5% / mo' }
+                    ].map((plan) => {
+                      const monthly = Math.round((order?.total || 0) / plan.tenor);
+                      const isSelected = selectedTenor === plan.tenor;
                       return (
                         <div
-                          key={t.tenor}
-                          onClick={() => setSelectedTenor(t.tenor)}
+                          key={plan.tenor}
+                          onClick={() => setSelectedTenor(plan.tenor)}
                           className={`p-2.5 border-2 border-ink cursor-pointer text-center space-y-0.5 transition-all ${
                             isSelected
                               ? 'bg-brand text-white shadow-xs'
                               : 'bg-surface hover:bg-white text-ink'
                           }`}
                         >
-                          <div className="font-bold">{t.label}</div>
+                          <div className="font-bold">{plan.label}</div>
                           <div className="text-[11px] font-extrabold">{formatIDR(monthly)}</div>
-                          <div className="text-[9px] opacity-80">{t.rate}</div>
+                          <div className="text-[9px] opacity-80">{plan.rate}</div>
                         </div>
                       );
                     })}
@@ -400,7 +400,7 @@ export const DevPayPage: React.FC = () => {
                 className="w-full bg-emerald-600 hover:bg-emerald-700 disabled:opacity-50 text-white font-display text-base uppercase py-3.5 px-4 border-3 border-ink shadow-[4px_4px_0px_#1A1A1A] hover:shadow-[6px_6px_0px_#1A1A1A] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0.5 active:translate-y-0.5 transition-all flex items-center justify-center space-x-2 cursor-pointer"
               >
                 <CheckCircle2 className="w-5 h-5" />
-                <span>OTORISASI & BAYAR {currentMethod.shortName.toUpperCase()} (SUKSES)</span>
+                <span>{lang === 'id' ? `OTORISASI & BAYAR ${currentMethod.shortName.toUpperCase()} (SUKSES)` : `AUTHORIZE & PAY ${currentMethod.shortName.toUpperCase()} (SUCCESS)`}</span>
               </button>
             </div>
           )}
@@ -415,7 +415,7 @@ export const DevPayPage: React.FC = () => {
               className="w-full bg-white hover:bg-red-50 text-ink hover:text-red-700 font-mono text-xs font-bold uppercase py-2.5 px-3 border-2 border-ink shadow-xs transition-colors flex items-center justify-center space-x-1.5 cursor-pointer disabled:opacity-50"
             >
               <XCircle className="w-4 h-4 text-red-600" />
-              <span>SIMULASI PEMBAYARAN GAGAL / EXPIRED</span>
+              <span>{t.devPay.failBtn}</span>
             </button>
           </div>
         </div>
@@ -424,32 +424,32 @@ export const DevPayPage: React.FC = () => {
         <div className="lg:col-span-5 bg-surface border-4 border-ink p-6 shadow-xl space-y-5">
           <div className="flex justify-between items-start border-b-3 border-ink pb-3">
             <div>
-              <div className="font-mono text-xs text-ink/70">NOMOR PESANAN</div>
+              <div className="font-mono text-xs text-ink/70">{t.devPay.orderNumber}</div>
               <div className="font-display text-2xl text-ink">#{order?.orderNumber}</div>
             </div>
             <div className="bg-white border-2 border-ink px-2.5 py-1 font-mono text-xs font-bold uppercase">
-              STATUS: <span className="text-brand">{order?.status}</span>
+              {t.devPay.status} <span className="text-brand">{order?.status}</span>
             </div>
           </div>
 
           {/* Customer & Total */}
           <div className="space-y-2.5 font-mono text-xs">
             <div className="flex justify-between">
-              <span className="text-ink/70">Pembeli:</span>
+              <span className="text-ink/70">{t.devPay.buyer}</span>
               <span className="font-bold text-ink truncate max-w-[180px]">{order?.customerName}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-ink/70">Email:</span>
+              <span className="text-ink/70">{t.devPay.email}</span>
               <span className="font-bold text-ink truncate max-w-[180px]">{order?.customerEmail}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-ink/70">Tujuan:</span>
+              <span className="text-ink/70">{t.devPay.destination}</span>
               <span className="font-bold text-ink truncate max-w-[180px]">
                 {order?.shippingCity}, {order?.shippingProvince}
               </span>
             </div>
             <div className="border-t-2 border-ink/20 pt-2 flex justify-between items-baseline font-mono">
-              <span className="font-bold text-ink">TOTAL TAGIHAN:</span>
+              <span className="font-bold text-ink">{t.devPay.totalDue}</span>
               <span className="font-display text-2xl text-brand">{formatIDR(order?.total || 0)}</span>
             </div>
           </div>
@@ -457,7 +457,7 @@ export const DevPayPage: React.FC = () => {
           {/* Items Preview */}
           <div className="bg-white border-2 border-ink p-3 space-y-2 font-mono text-xs max-h-48 overflow-y-auto">
             <div className="font-bold text-ink border-b border-ink/10 pb-1 text-[11px]">
-              RINCIAN ITEM ({order?.items?.length || 0}):
+              {t.devPay.itemDetails} ({order?.items?.length || 0}):
             </div>
             {order?.items?.map((item) => (
               <div
@@ -477,7 +477,7 @@ export const DevPayPage: React.FC = () => {
 
           {order?.status === 'paid' && (
             <div className="bg-emerald-100 border-2 border-emerald-800 p-3 font-mono text-xs font-bold text-emerald-900 text-center">
-              ✓ Pesanan ini telah LUNAS! Anda akan diarahkan ke halaman pelacakan.
+              {t.devPay.paidNotice}
             </div>
           )}
         </div>

@@ -12,10 +12,10 @@ interface LanguageState {
 export const useLanguageStore = create<LanguageState>()(
   persist(
     (set) => ({
-      language: 'id',
+      language: 'en',
       setLanguage: (language: Language) => set({ language }),
       toggleLanguage: () =>
-        set((state) => ({ language: state.language === 'id' ? 'en' : 'id' }))
+        set((state) => ({ language: state.language === 'en' ? 'id' : 'en' }))
     }),
     {
       name: 'void-rose-language'

@@ -250,7 +250,7 @@ export const FloatingCart: React.FC = () => {
               {showClearToast && (
                 <div className="bg-emerald-100 border-2 border-ink p-2 flex items-center space-x-1.5 font-mono text-[11px] font-bold text-emerald-900 animate-fadeIn">
                   <CheckCircle2 className="w-3.5 h-3.5 text-emerald-700 shrink-0" />
-                  <span>Keranjang telah dikosongkan.</span>
+                  <span>{t.floatingCart.clearedToast}</span>
                 </div>
               )}
 

@@ -43,6 +43,21 @@ export const ORDER_STATUS_LABELS: Record<string, { label: string; bg: string; co
   completed: { label: 'SELESAI', bg: '#85586F', color: '#FFFFFF' }
 };
 
+export const ORDER_STATUS_LABELS_EN: Record<string, { label: string; bg: string; color: string }> = {
+  pending: { label: 'PENDING PAYMENT', bg: '#D0B8A8', color: '#1A1A1A' },
+  paid: { label: 'PAID', bg: '#85586F', color: '#FFFFFF' },
+  failed: { label: 'PAYMENT FAILED', bg: '#1A1A1A', color: '#FFFFFF' },
+  expired: { label: 'EXPIRED', bg: '#6B6B6B', color: '#FFFFFF' },
+  cancelled: { label: 'CANCELLED', bg: '#6B6B6B', color: '#FFFFFF' },
+  shipped: { label: 'SHIPPED', bg: '#DFD3C3', color: '#1A1A1A' },
+  completed: { label: 'COMPLETED', bg: '#85586F', color: '#FFFFFF' }
+};
+
+export function getOrderStatusLabel(status: string, lang: 'id' | 'en' = 'en') {
+  const dict = lang === 'id' ? ORDER_STATUS_LABELS : ORDER_STATUS_LABELS_EN;
+  return dict[status] || { label: status.toUpperCase(), bg: '#DFD3C3', color: '#1A1A1A' };
+}
+
 export const MARQUEE_ITEMS = [
   'LIMITED DROP — NO RESTOCK',
   '★ FREE SHIPPING OVER RP 750.000',

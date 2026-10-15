@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { ShieldAlert, Package, Check, Truck, Filter } from 'lucide-react';
 import { Button } from '../components/Button';
 import { getAdminOrders, shipAdminOrder, formatIDR } from '../lib/api';
-import { Order, ORDER_STATUS_LABELS } from '@merch-band/shared';
+import { Order, getOrderStatusLabel } from '@merch-band/shared';
+import { useTranslation } from '../i18n/translations';
 
 export const AdminPage: React.FC = () => {
+  const { lang, isId } = useTranslation();
   const [token, setToken] = useState<string>(() => sessionStorage.getItem('vr_admin_token') || '');
   const [inputToken, setInputToken] = useState('');
   const [authenticated, setAuthenticated] = useState(false);
@@ -25,7 +27,7 @@ export const AdminPage: React.FC = () => {
       setAuthenticated(true);
       sessionStorage.setItem('vr_admin_token', secret);
     } catch (err: unknown) {
-      setAuthError('Token admin salah atau tidak valid');
+      setAuthError(isId ? 'Token admin salah atau tidak valid' : 'Admin secret token is invalid');
       setAuthenticated(false);
     } finally {
       setLoading(false);
@@ -52,12 +54,15 @@ export const AdminPage: React.FC = () => {
     setShippingLoading(true);
     try {
       await shipAdminOrder(token, selectedOrder.orderNumber, trackingNumber.trim());
-      alert(`Pesanan #${selectedOrder.orderNumber} berhasil diperbarui ke status SHIPPED dengan resi ${trackingNumber}! Email notifikasi telah dikirim ke pembeli.`);
+      const successMsg = isId
+        ? `Pesanan #${selectedOrder.orderNumber} berhasil diperbarui ke status SHIPPED dengan resi ${trackingNumber}! Email notifikasi telah dikirim ke pembeli.`
+        : `Order #${selectedOrder.orderNumber} successfully updated to SHIPPED with tracking number ${trackingNumber}! Notification email sent to buyer.`;
+      alert(successMsg);
       setSelectedOrder(null);
       setTrackingNumber('');
       verifyAndLoad(token);
     } catch (err) {
-      alert('Gagal mengupdate pengiriman: ' + (err as Error).message);
+      alert((isId ? 'Gagal mengupdate pengiriman: ' : 'Failed to update shipment: ') + (err as Error).message);
     } finally {
       setShippingLoading(false);
     }
@@ -69,9 +74,13 @@ export const AdminPage: React.FC = () => {
         <div className="bg-white border-4 border-ink p-8 shadow-xl space-y-6">
           <div className="text-center space-y-2">
             <ShieldAlert className="w-12 h-12 text-brand mx-auto" />
-            <h1 className="font-display text-2xl text-ink uppercase">PORTAL ADMIN</h1>
+            <h1 className="font-display text-2xl text-ink uppercase">
+              {isId ? 'PORTAL ADMIN' : 'ADMIN PORTAL'}
+            </h1>
             <p className="font-mono text-xs text-ink/70">
-              Dilindungi satu rahasia (Secret Token). Tidak memerlukan pendaftaran akun.
+              {isId
+                ? 'Dilindungi satu rahasia (Secret Token). Tidak memerlukan pendaftaran akun.'
+                : 'Protected by a secret token. No account registration required.'}
             </p>
           </div>
 
@@ -90,7 +99,7 @@ export const AdminPage: React.FC = () => {
                 type="password"
                 id="adminKey"
                 required
-                placeholder="Masukkan secret key..."
+                placeholder={isId ? 'Masukkan secret key...' : 'Enter secret key...'}
                 value={inputToken}
                 onChange={(e) => setInputToken(e.target.value)}
                 className="neo-input w-full px-4 py-3 text-sm font-mono"
@@ -101,7 +110,9 @@ export const AdminPage: React.FC = () => {
             </div>
 
             <Button type="submit" variant="primary" size="md" fullWidth disabled={loading}>
-              {loading ? 'MEMVERIFIKASI...' : 'BUKA PORTAL ADMIN →'}
+              {loading
+                ? (isId ? 'MEMVERIFIKASI...' : 'VERIFYING...')
+                : (isId ? 'BUKA PORTAL ADMIN →' : 'OPEN ADMIN PORTAL →')}
             </Button>
           </form>
         </div>
@@ -118,7 +129,7 @@ export const AdminPage: React.FC = () => {
             MANAGEMENT DASHBOARD
           </div>
           <h1 className="font-display text-3xl sm:text-4xl text-ink uppercase tracking-tight">
-            DAFTAR PESANAN BAND
+            {isId ? 'DAFTAR PESANAN BAND' : 'BAND ORDERS MANAGEMENT'}
           </h1>
         </div>
 
@@ -148,7 +159,7 @@ export const AdminPage: React.FC = () => {
             className={`font-mono text-xs font-bold px-3 py-1.5 border-2 border-ink uppercase ${filterStatus === st ? 'bg-brand text-white shadow-xs' : 'bg-white text-ink hover:bg-surface'
               }`}
           >
-            {st ? st : 'SEMUA'}
+            {st ? st : (isId ? 'SEMUA' : 'ALL')}
           </button>
         ))}
       </div>
@@ -156,11 +167,11 @@ export const AdminPage: React.FC = () => {
       {/* Orders Table */}
       {loading ? (
         <div className="bg-white border-3 border-ink p-12 text-center font-mono">
-          MEMUAT PESANAN...
+          {isId ? 'MEMUAT PESANAN...' : 'LOADING ORDERS...'}
         </div>
       ) : orders.length === 0 ? (
         <div className="bg-white border-3 border-ink p-12 text-center font-mono">
-          Belum ada pesanan yang sesuai filter.
+          {isId ? 'Belum ada pesanan yang sesuai filter.' : 'No orders found for this filter.'}
         </div>
       ) : (
         <div className="bg-white border-4 border-ink shadow-lg overflow-x-auto">
@@ -168,21 +179,17 @@ export const AdminPage: React.FC = () => {
             <thead>
               <tr className="bg-ink text-white border-b-3 border-ink text-left">
                 <th className="p-3.5">ORDER NO</th>
-                <th className="p-3.5">TANGGAL</th>
-                <th className="p-3.5">PEMBELI</th>
+                <th className="p-3.5">{isId ? 'TANGGAL' : 'DATE'}</th>
+                <th className="p-3.5">{isId ? 'PEMBELI' : 'BUYER'}</th>
                 <th className="p-3.5">TOTAL</th>
                 <th className="p-3.5">STATUS</th>
-                <th className="p-3.5">RESI PENGIRIMAN</th>
-                <th className="p-3.5">AKSI</th>
+                <th className="p-3.5">{isId ? 'RESI PENGIRIMAN' : 'TRACKING NO'}</th>
+                <th className="p-3.5">{isId ? 'AKSI' : 'ACTION'}</th>
               </tr>
             </thead>
             <tbody>
               {orders.map((ord) => {
-                const badge = ORDER_STATUS_LABELS[ord.status] || {
-                  label: ord.status,
-                  bg: '#1A1A1A',
-                  color: '#FFF'
-                };
+                const badge = getOrderStatusLabel(ord.status, lang);
                 return (
                   <tr key={ord.id} className="border-b-2 border-ink/10 hover:bg-surface/30">
                     <td className="p-3.5 font-bold text-ink">
@@ -196,7 +203,7 @@ export const AdminPage: React.FC = () => {
                       </a>
                     </td>
                     <td className="p-3.5 text-ink/70">
-                      {new Date(ord.createdAt).toLocaleDateString('id-ID', {
+                      {new Date(ord.createdAt).toLocaleDateString(isId ? 'id-ID' : 'en-US', {
                         day: 'numeric',
                         month: 'short',
                         hour: '2-digit',
@@ -227,7 +234,7 @@ export const AdminPage: React.FC = () => {
                         }}
                         className="neo-btn bg-accent-2 text-ink px-2.5 py-1 text-[11px]"
                       >
-                        INPUT RESI
+                        {isId ? 'INPUT RESI' : 'SET TRACKING'}
                       </button>
                     </td>
                   </tr>
@@ -244,7 +251,7 @@ export const AdminPage: React.FC = () => {
           <div className="bg-white border-4 border-ink p-6 max-w-md w-full shadow-2xl space-y-4">
             <div className="flex justify-between items-center border-b-2 border-ink pb-2">
               <h3 className="font-display text-lg text-ink">
-                PENGIRIMAN #{selectedOrder.orderNumber}
+                {isId ? 'PENGIRIMAN #' : 'SHIPMENT #'}{selectedOrder.orderNumber}
               </h3>
               <button
                 onClick={() => setSelectedOrder(null)}
@@ -255,19 +262,19 @@ export const AdminPage: React.FC = () => {
             </div>
 
             <p className="font-mono text-xs text-ink/70">
-              Penerima: <strong>{selectedOrder.customerName}</strong> ({selectedOrder.customerEmail})<br />
-              Tujuan: {selectedOrder.shippingAddress}, {selectedOrder.shippingCity}
+              {isId ? 'Penerima: ' : 'Recipient: '}<strong>{selectedOrder.customerName}</strong> ({selectedOrder.customerEmail})<br />
+              {isId ? 'Tujuan: ' : 'Destination: '}{selectedOrder.shippingAddress}, {selectedOrder.shippingCity}
             </p>
 
             <form onSubmit={handleShipOrder} className="space-y-4">
               <div>
                 <label className="block font-mono text-xs font-bold text-ink mb-1">
-                  NOMOR RESI PENGIRIMAN (JNE / J&T / SICEPAT) *
+                  {isId ? 'NOMOR RESI PENGIRIMAN (JNE / J&T / SICEPAT) *' : 'COURIER TRACKING NUMBER (JNE / J&T / SICEPAT / DHL) *'}
                 </label>
                 <input
                   type="text"
                   required
-                  placeholder="misal: JNE10928471928"
+                  placeholder={isId ? 'misal: JNE10928471928' : 'e.g. JNE10928471928'}
                   value={trackingNumber}
                   onChange={(e) => setTrackingNumber(e.target.value.toUpperCase())}
                   className="neo-input w-full px-3 py-2.5 font-mono text-sm uppercase font-bold"
@@ -280,11 +287,13 @@ export const AdminPage: React.FC = () => {
                   onClick={() => setSelectedOrder(null)}
                   className="neo-btn bg-white text-ink px-4 py-2 text-xs"
                 >
-                  BATAL
+                  {isId ? 'BATAL' : 'CANCEL'}
                 </button>
                 <Button type="submit" variant="primary" size="sm" disabled={shippingLoading}>
                   <Truck className="w-4 h-4 mr-1" />
-                  {shippingLoading ? 'MENYIMPAN...' : 'SIMPAN & KIRIM EMAIL RESI'}
+                  {shippingLoading
+                    ? (isId ? 'MENYIMPAN...' : 'SAVING...')
+                    : (isId ? 'SIMPAN & KIRIM EMAIL RESI' : 'SAVE & SEND TRACKING EMAIL')}
                 </Button>
               </div>
             </form>

@@ -62,22 +62,6 @@ export const Navbar: React.FC = () => {
           >
             <button
               type="button"
-              id="lang-btn-id"
-              onClick={() => setLanguage('id')}
-              className={`px-2 sm:px-2.5 py-1.5 transition-colors cursor-pointer ${
-                lang === 'id'
-                  ? 'bg-brand text-white font-extrabold shadow-inner'
-                  : 'bg-white text-ink hover:bg-surface/80'
-              }`}
-              title="Bahasa Indonesia"
-              aria-label="Ubah ke Bahasa Indonesia"
-              aria-pressed={lang === 'id'}
-            >
-              ID
-            </button>
-            <div className="w-[2px] h-5 bg-ink" />
-            <button
-              type="button"
               id="lang-btn-en"
               onClick={() => setLanguage('en')}
               className={`px-2 sm:px-2.5 py-1.5 transition-colors cursor-pointer ${
@@ -90,6 +74,22 @@ export const Navbar: React.FC = () => {
               aria-pressed={lang === 'en'}
             >
               EN
+            </button>
+            <div className="w-[2px] h-5 bg-ink" />
+            <button
+              type="button"
+              id="lang-btn-id"
+              onClick={() => setLanguage('id')}
+              className={`px-2 sm:px-2.5 py-1.5 transition-colors cursor-pointer ${
+                lang === 'id'
+                  ? 'bg-brand text-white font-extrabold shadow-inner'
+                  : 'bg-white text-ink hover:bg-surface/80'
+              }`}
+              title="Bahasa Indonesia"
+              aria-label="Ubah ke Bahasa Indonesia"
+              aria-pressed={lang === 'id'}
+            >
+              ID
             </button>
           </div>
 
@@ -127,17 +127,17 @@ export const Navbar: React.FC = () => {
             <div className="flex items-center border-2 border-ink bg-white font-mono text-xs font-bold">
               <button
                 type="button"
-                onClick={() => setLanguage('id')}
-                className={`px-3 py-1 ${lang === 'id' ? 'bg-brand text-white' : 'text-ink'}`}
-              >
-                ID
-              </button>
-              <button
-                type="button"
                 onClick={() => setLanguage('en')}
                 className={`px-3 py-1 ${lang === 'en' ? 'bg-brand text-white' : 'text-ink'}`}
               >
                 EN
+              </button>
+              <button
+                type="button"
+                onClick={() => setLanguage('id')}
+                className={`px-3 py-1 ${lang === 'id' ? 'bg-brand text-white' : 'text-ink'}`}
+              >
+                ID
               </button>
             </div>
           </div>

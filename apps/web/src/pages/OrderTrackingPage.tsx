@@ -3,14 +3,14 @@ import { useParams, useSearchParams, Link } from 'react-router-dom';
 import { Truck, AlertCircle, RefreshCw, Copy, Check } from 'lucide-react';
 import { Button } from '../components/Button';
 import { getOrder, createPayment, formatIDR } from '../lib/api';
-import { Order, ORDER_STATUS_LABELS } from '@merch-band/shared';
+import { Order, getOrderStatusLabel } from '@merch-band/shared';
 import { useTranslation } from '../i18n/translations';
 
 export const OrderTrackingPage: React.FC = () => {
   const { orderNumber } = useParams<{ orderNumber: string }>();
   const [searchParams] = useSearchParams();
   const token = searchParams.get('token') || undefined;
-  const { t } = useTranslation();
+  const { t, lang } = useTranslation();
 
   const [order, setOrder] = useState<Order | null>(null);
   const [loading, setLoading] = useState(true);
@@ -45,7 +45,7 @@ export const OrderTrackingPage: React.FC = () => {
         window.location.href = res.paymentUrl;
       }
     } catch (err) {
-      alert('Gagal menginisiasi pembayaran ulang: ' + (err as Error).message);
+      alert(t.alerts.repayError + (err as Error).message);
       setRepaying(false);
     }
   };
@@ -77,11 +77,7 @@ export const OrderTrackingPage: React.FC = () => {
     );
   }
 
-  const statusMeta = ORDER_STATUS_LABELS[order.status] || {
-    label: order.status.toUpperCase(),
-    bg: '#1A1A1A',
-    color: '#FFFFFF'
-  };
+  const statusMeta = getOrderStatusLabel(order.status, lang);
 
   // Timeline Steps
   const steps = [

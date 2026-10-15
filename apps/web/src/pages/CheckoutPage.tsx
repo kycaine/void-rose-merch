@@ -116,7 +116,7 @@ export const CheckoutPage: React.FC = () => {
         navigate(result.trackingUrl);
       }
     } catch (err: unknown) {
-      const msg = err instanceof Error ? err.message : 'Terjadi kesalahan saat memproses pesanan';
+      const msg = err instanceof Error ? err.message : t.alerts.checkoutError;
       setErrorMsg(msg);
       setLoading(false);
     }

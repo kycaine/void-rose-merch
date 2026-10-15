@@ -24,7 +24,7 @@ export const OrderLookupPage: React.FC = () => {
       const order = await lookupOrder(orderNumber.trim(), email.trim());
       navigate(`/order/${order.orderNumber}?token=${order.accessToken}`);
     } catch (err: unknown) {
-      const msg = err instanceof Error ? err.message : 'Pesanan tidak ditemukan atau email salah';
+      const msg = err instanceof Error ? err.message : t.alerts.orderNotFound;
       setErrorMsg(msg);
       setLoading(false);
     }
