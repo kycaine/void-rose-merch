@@ -441,8 +441,8 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({ onOpenTicketModal, tourS
             </div>
           </div>
 
-          {/* Right Column: Visual Stage with Neo-Brutalist Frame */}
-          <div className="lg:col-span-5 relative max-w-full">
+          {/* Right Column: Visual Stage with Neo-Brutalist Frame (Hidden on Mobile/HP mode) */}
+          <div className="hidden md:block lg:col-span-5 relative max-w-full">
             <div className="relative border-4 border-ink bg-white p-4 sm:p-6 aspect-[4/3] sm:aspect-square flex items-center justify-center shadow-[6px_6px_0px_#1A1A1A] sm:shadow-[10px_10px_0px_#1A1A1A] overflow-hidden group max-w-full">
               {/* Product / Asset Image */}
               <img
